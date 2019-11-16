@@ -15,7 +15,7 @@ hparams = tf.contrib.training.HParams(
     use_lws = False,
     
     # Audio
-    sample_rate = 24000,  # 
+    sample_rate = 22050,  # 
     
     # shift can be specified by either hop_size(우선) or frame_shift_ms
     hop_size = 300,             # frame_shift_ms = 12.5ms
@@ -24,7 +24,7 @@ hparams = tf.contrib.training.HParams(
     num_mels=80,
 
     #Spectrogram Pre-Emphasis (Lfilter: Reduce spectrogram noise and helps model certitude levels. Also allows for better G&L phase reconstruction)
-    preemphasize = True, #whether to apply filter
+    preemphasize = False, #whether to apply filter
     preemphasis = 0.97,
     min_level_db = -100,
     ref_level_db = 20,
@@ -41,9 +41,10 @@ hparams = tf.contrib.training.HParams(
     #M-AILABS (and other datasets) trim params (there parameters are usually correct for any data, but definitely must be tuned for specific speakers)
     trim_fft_size = 512, 
     trim_hop_size = 128,
-    trim_top_db = 23,
+    trim_top_db = 20,
     
-    
+    fmin = 55,
+    fmax = 7600,
     
     
     clip_mels_length = True, #For cases of OOM (Not really recommended, only use if facing unsolvable OOM errors, also consider clipping your samples to smaller chunks)   
